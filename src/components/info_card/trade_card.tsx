@@ -27,18 +27,18 @@ const TradeCard = () => {
     // const onTab2Change = key => {
     //     setActiveTabKey2(key);
     // };
-
     return (
         <Card
             style={{width: '100%'}}
-            title="kksuei's Asserts"
-            // extra={<a href="#">More</a>}
+            title="Card title"
+            extra={<a href="#">More</a>}
             tabList={tabList}
             activeTabKey={activeTabKey1}
-            onTabChange={key => {
-                // onTab1Change(key);
-            }}
+            cover={<img alt="example"
+                        src="https://lh3.googleusercontent.com/qV-aq07-QcJZmK7oNY_G2yQaYQQ99__v2mIzEakEVPm0slB25ilAqO-0dnp-jpUCKdDSuyoziCwydQXxgZGXTaqjtkLarJ2LTe3X=w600"/>}
+
         >
+            Temple of Ghxsts
         </Card>
     );
 };
