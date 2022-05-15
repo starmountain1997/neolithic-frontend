@@ -15,6 +15,8 @@ import Gallery from './components/account/Gallery';
 import Messages from './components/account/Messages';
 import Settings from './components/account/Settings';
 import TradeDetail from "./components/transactions/TradeDetail";
+import CreateSwap from "./components/create_swap";
+import NewTrade from "./components/create_swap/new_trade";
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
@@ -35,7 +37,9 @@ root.render(
                             <Route path="messages" element={<Messages/>}/>
                             <Route path="settings" element={<Settings/>}/>
                         </Route>
-                        <Route path='/about' element={<About/>}/>
+                        <Route path='create_swap' element={<CreateSwap/>}/>
+                        <Route path='new_trade' element={<NewTrade/>}/>
+                        <Route path='about' element={<About/>}/>
                     </Route>
                 </Routes>
             </BrowserRouter>

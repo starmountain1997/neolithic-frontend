@@ -1,9 +1,9 @@
-import React, { Component, useState } from 'react'
-import { Menu, Typography } from 'antd';
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import React, {useState} from 'react'
+import {Menu, Typography} from 'antd';
+import {Link, useLocation} from 'react-router-dom';
 import './index.less';
 
-const { Title } = Typography;
+const {Title} = Typography;
 
 export default function Navi() {
     const location = useLocation();
@@ -13,12 +13,12 @@ export default function Navi() {
     return (
         <div>
             <div className="logo">
-                <Title level={1} italic={true} className="neonText" >neoLithic</Title>
+                <Title level={1} italic={true} className="neonText">neoLithic</Title>
             </div>
             <Menu
                 mode="horizontal"
                 defaultSelectedKeys={["market"]}
-                style={{ lineHeight: '64px' }}
+                style={{lineHeight: '64px'}}
             >
                 <Menu.Item key="market" onClick={() => setInputValue("explore")}>
                     <Link to="/market">Explore Market</Link>
@@ -28,6 +28,9 @@ export default function Navi() {
                 </Menu.Item>
                 <Menu.Item key="profile">
                     <Link to="/account">My Account</Link>
+                </Menu.Item>
+                <Menu.Item key="create_swap">
+                    <Link to="/create_swap">Create Swap</Link>
                 </Menu.Item>
                 <Menu.Item key="about">
                     <Link to="/about">About</Link>
