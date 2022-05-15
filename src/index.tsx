@@ -2,18 +2,44 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {MetaMaskProvider} from "metamask-react";
+
+import reportWebVitals from "./reportWebVitals";
+import Market from './components/market'
+import About from './components/about'
+import Account from './components/account'
+import Transactions from './components/transactions'
+import Stars from './components/account/Stars';
+import Gallery from './components/account/Gallery';
+import Messages from './components/account/Messages';
+import Settings from './components/account/Settings';
+import TradeDetail from "./components/transactions/TradeDetail";
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+    document.getElementById('root') as HTMLElement
 );
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <React.StrictMode>
+        <MetaMaskProvider>
+            <BrowserRouter>
+                <Routes>
+                    <Route path='/' element={<App/>}>
+                        <Route path='' element={<Market/>}/>
+                        <Route path='market' element={<Market/>}/>
+                        <Route path='transactions' element={<Transactions/>}/>
+                        <Route path="detail" element={<TradeDetail/>}/>
+                        <Route path='account' element={<Account/>}>
+                            <Route path="gallery" element={<Gallery/>}/>
+                            <Route path="stars" element={<Stars/>}/>
+                            <Route path="messages" element={<Messages/>}/>
+                            <Route path="settings" element={<Settings/>}/>
+                        </Route>
+                        <Route path='/about' element={<About/>}/>
+                    </Route>
+                </Routes>
+            </BrowserRouter>
+        </MetaMaskProvider>
+    </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

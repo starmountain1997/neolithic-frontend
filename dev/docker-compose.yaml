@@ -1,0 +1,81 @@
+version: "3"
+services:
+  # certbot:
+  #   image: certbot/certbot
+  #   container_name: certbot
+  #   volumes:
+  #     - ./certbot/conf:/etc/letsencrypt
+  #     - ./certbot/www:/var/www/certbot
+  #   command: certonly --webroot -w /var/www/certbot --force-renewal --email guozr1997@hotmail.com -d ganache.monyamonya.monster --agree-tos
+
+
+  # postgres:
+  #   image: postgres:latest
+  #   container_name: postgres-neolithic
+  #   environment:
+  #     - POSTGRES_DB=postgres
+  #     - POSTGRES_USER=postgres
+  #     - POSTGRES_PASSWORD=postgres
+  #   volumes:
+  #     - ./postgres:/var/lib/postgresql/data
+  #   ports:
+  #     - '5432:5432'
+  #   networks:
+  #     - neolithic-net
+  # redis:
+  #   image: redis:latest
+  #   container_name: redis-neolithic
+  #   ports:
+  #     - '6379:6379'
+  #   networks:
+  #     - neolithic-net
+  # django:
+  #   build: ./django
+  #   container_name: django-neolithic
+  #   tty: true
+  #   ports:
+  #     - 8000:8000
+  #   volumes:
+  #     - ..:/code
+  #   environment:
+  #     - POSTGRES_DB=postgres
+  #     - POSTGRES_USER=postgres
+  #     - POSTGRES_PASSWORD=postgres
+  #   depends_on:
+  #     - redis
+  #     - postgres
+  #   networks:
+  #     - neolithic-net
+  react:
+    build: ./react
+    container_name: react-neolithic
+    tty: true
+    ports:
+      - 3000:3000
+    volumes:
+      - ..:/noelithic-frontend
+      # depends_on:
+      # - django
+    networks:
+      - neolithic-net
+    environment:
+      - REACT_APP_MORALIS_APPLICATION_ID="Dy9trzFi9ooKgRVdV8546ThIU1XyBe0dhnyME4dm"
+      - REACT_APP_MORALIS_SERVER_URL="https://rljflmunwrxj.usemoralis.com:2053/server"
+  # nginx:
+  #   restart: always
+  #   build: ./nginx
+  #   container_name: nginx
+  #   ports:
+  #     - 80:80
+  #     - 443:443
+  #   links:
+  #     - postgres:postgres
+  #     - redis:redis
+  #   volumes:
+  #     - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+  #     - ./nginx/conf.d/:/etc/nginx/conf.d/
+  #     - ./certbot/www:/var/www/certbot
+  #     - ./certbot/conf:/etc/letsencrypt
+networks:
+  neolithic-net:
+    driver: bridge
